@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 
 	"github.com/maria-robobug/grpc-go-course/greet/greetpb"
@@ -21,5 +22,22 @@ func main() {
 	defer cc.Close()
 
 	c := greetpb.NewGreetServiceClient(cc)
-	log.Infof("Created client: %f", c)
+	doUnary(c)
+}
+
+func doUnary(c greetpb.GreetServiceClient) {
+	log.Infoln("Starting to do a Unary RPC")
+	req := &greetpb.GreetRequest{
+		Greeting: &greetpb.Greeting{
+			FirstName: "Maria",
+			LastName:  "Shodunke",
+		},
+	}
+
+	resp, err := c.Greet(context.Background(), req)
+	if err != nil {
+		log.Errorf("error while calling Greet RPC: %v", err)
+	}
+
+	log.Infof("response from Greet: %v", resp.Result)
 }
