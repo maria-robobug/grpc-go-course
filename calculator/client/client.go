@@ -16,6 +16,8 @@ func main() {
 		log.Errorf("could not connect: %v", err)
 	}
 
+	defer cc.Close()
+
 	c := calcpb.NewCalculatorServiceClient(cc)
 	doUnary(c)
 }
