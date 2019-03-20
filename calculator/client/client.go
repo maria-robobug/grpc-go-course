@@ -32,7 +32,7 @@ func doUnary(c calcpb.CalculatorServiceClient) {
 		},
 	}
 
-	resp, err := c.Calculate(context.Background(), req)
+	resp, err := c.Sum(context.Background(), req)
 	if err != nil {
 		log.Errorf("failed to calculate numbers: %v", err)
 	}

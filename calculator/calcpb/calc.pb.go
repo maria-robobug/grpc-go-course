@@ -35,7 +35,7 @@ func (m *Numbers) Reset()         { *m = Numbers{} }
 func (m *Numbers) String() string { return proto.CompactTextString(m) }
 func (*Numbers) ProtoMessage()    {}
 func (*Numbers) Descriptor() ([]byte, []int) {
-	return fileDescriptor_calc_e92cae03806fc086, []int{0}
+	return fileDescriptor_calc_50bb340210416869, []int{0}
 }
 func (m *Numbers) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Numbers.Unmarshal(m, b)
@@ -80,7 +80,7 @@ func (m *CalculatorRequest) Reset()         { *m = CalculatorRequest{} }
 func (m *CalculatorRequest) String() string { return proto.CompactTextString(m) }
 func (*CalculatorRequest) ProtoMessage()    {}
 func (*CalculatorRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_calc_e92cae03806fc086, []int{1}
+	return fileDescriptor_calc_50bb340210416869, []int{1}
 }
 func (m *CalculatorRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_CalculatorRequest.Unmarshal(m, b)
@@ -118,7 +118,7 @@ func (m *CalculatorResponse) Reset()         { *m = CalculatorResponse{} }
 func (m *CalculatorResponse) String() string { return proto.CompactTextString(m) }
 func (*CalculatorResponse) ProtoMessage()    {}
 func (*CalculatorResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_calc_e92cae03806fc086, []int{2}
+	return fileDescriptor_calc_50bb340210416869, []int{2}
 }
 func (m *CalculatorResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_CalculatorResponse.Unmarshal(m, b)
@@ -164,7 +164,7 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type CalculatorServiceClient interface {
 	// Unary API
-	Calculate(ctx context.Context, in *CalculatorRequest, opts ...grpc.CallOption) (*CalculatorResponse, error)
+	Sum(ctx context.Context, in *CalculatorRequest, opts ...grpc.CallOption) (*CalculatorResponse, error)
 }
 
 type calculatorServiceClient struct {
@@ -175,9 +175,9 @@ func NewCalculatorServiceClient(cc *grpc.ClientConn) CalculatorServiceClient {
 	return &calculatorServiceClient{cc}
 }
 
-func (c *calculatorServiceClient) Calculate(ctx context.Context, in *CalculatorRequest, opts ...grpc.CallOption) (*CalculatorResponse, error) {
+func (c *calculatorServiceClient) Sum(ctx context.Context, in *CalculatorRequest, opts ...grpc.CallOption) (*CalculatorResponse, error) {
 	out := new(CalculatorResponse)
-	err := c.cc.Invoke(ctx, "/calculator.CalculatorService/Calculate", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/calculator.CalculatorService/Sum", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -187,27 +187,27 @@ func (c *calculatorServiceClient) Calculate(ctx context.Context, in *CalculatorR
 // CalculatorServiceServer is the server API for CalculatorService service.
 type CalculatorServiceServer interface {
 	// Unary API
-	Calculate(context.Context, *CalculatorRequest) (*CalculatorResponse, error)
+	Sum(context.Context, *CalculatorRequest) (*CalculatorResponse, error)
 }
 
 func RegisterCalculatorServiceServer(s *grpc.Server, srv CalculatorServiceServer) {
 	s.RegisterService(&_CalculatorService_serviceDesc, srv)
 }
 
-func _CalculatorService_Calculate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _CalculatorService_Sum_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CalculatorRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CalculatorServiceServer).Calculate(ctx, in)
+		return srv.(CalculatorServiceServer).Sum(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/calculator.CalculatorService/Calculate",
+		FullMethod: "/calculator.CalculatorService/Sum",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CalculatorServiceServer).Calculate(ctx, req.(*CalculatorRequest))
+		return srv.(CalculatorServiceServer).Sum(ctx, req.(*CalculatorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -217,18 +217,18 @@ var _CalculatorService_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*CalculatorServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Calculate",
-			Handler:    _CalculatorService_Calculate_Handler,
+			MethodName: "Sum",
+			Handler:    _CalculatorService_Sum_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "calcpb/calc.proto",
 }
 
-func init() { proto.RegisterFile("calcpb/calc.proto", fileDescriptor_calc_e92cae03806fc086) }
+func init() { proto.RegisterFile("calcpb/calc.proto", fileDescriptor_calc_50bb340210416869) }
 
-var fileDescriptor_calc_e92cae03806fc086 = []byte{
-	// 215 bytes of a gzipped FileDescriptorProto
+var fileDescriptor_calc_50bb340210416869 = []byte{
+	// 213 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x4c, 0x4e, 0xcc, 0x49,
 	0x2e, 0x48, 0xd2, 0x07, 0x51, 0x7a, 0x05, 0x45, 0xf9, 0x25, 0xf9, 0x42, 0x5c, 0x20, 0x76, 0x69,
 	0x4e, 0x62, 0x49, 0x7e, 0x91, 0x92, 0x2b, 0x17, 0xbb, 0x5f, 0x69, 0x6e, 0x52, 0x6a, 0x51, 0xb1,
@@ -238,9 +238,9 @@ var fileDescriptor_calc_e92cae03806fc086 = []byte{
 	0x71, 0x09, 0x3a, 0xc3, 0x0d, 0x0d, 0x4a, 0x2d, 0x2c, 0x4d, 0x2d, 0x2e, 0x11, 0xd2, 0xe5, 0x62,
 	0xcf, 0x83, 0x98, 0x0d, 0x36, 0x8e, 0xdb, 0x48, 0x58, 0x0f, 0x61, 0xb3, 0x1e, 0xd4, 0xda, 0x20,
 	0x98, 0x1a, 0x25, 0x1d, 0x2e, 0x21, 0x64, 0x33, 0x8a, 0x0b, 0xf2, 0xf3, 0x8a, 0x53, 0x85, 0xc4,
-	0xb8, 0xd8, 0x8a, 0x52, 0x8b, 0x4b, 0x73, 0x4a, 0xa0, 0x4e, 0x82, 0xf2, 0x8c, 0x12, 0x91, 0x6d,
-	0x0c, 0x4e, 0x2d, 0x2a, 0xcb, 0x4c, 0x4e, 0x15, 0xf2, 0xe1, 0xe2, 0x84, 0x09, 0xa6, 0x0a, 0xc9,
-	0x22, 0xdb, 0x86, 0xe1, 0x3a, 0x29, 0x39, 0x5c, 0xd2, 0x10, 0x8b, 0x95, 0x18, 0x9c, 0x38, 0xa2,
-	0xd8, 0x20, 0x81, 0x97, 0xc4, 0x06, 0x0e, 0x38, 0x63, 0x40, 0x00, 0x00, 0x00, 0xff, 0xff, 0xe8,
-	0xca, 0xc2, 0x5b, 0x4d, 0x01, 0x00, 0x00,
+	0xb8, 0xd8, 0x8a, 0x52, 0x8b, 0x4b, 0x73, 0x4a, 0xa0, 0x4e, 0x82, 0xf2, 0x8c, 0xa2, 0x91, 0x6d,
+	0x0c, 0x4e, 0x2d, 0x2a, 0xcb, 0x4c, 0x4e, 0x15, 0x72, 0xe3, 0x62, 0x0e, 0x06, 0x39, 0x16, 0xd9,
+	0x1e, 0x0c, 0x77, 0x49, 0xc9, 0xe1, 0x92, 0x86, 0x58, 0xa9, 0xc4, 0xe0, 0xc4, 0x11, 0xc5, 0x06,
+	0x09, 0xb6, 0x24, 0x36, 0x70, 0x90, 0x19, 0x03, 0x02, 0x00, 0x00, 0xff, 0xff, 0xea, 0xf9, 0xbe,
+	0xd7, 0x47, 0x01, 0x00, 0x00,
 }

@@ -11,7 +11,7 @@ import (
 
 type service struct{}
 
-func (*service) Calculate(ctx context.Context, req *calcpb.CalculatorRequest) (*calcpb.CalculatorResponse, error) {
+func (*service) Sum(ctx context.Context, req *calcpb.CalculatorRequest) (*calcpb.CalculatorResponse, error) {
 	log.Infof("Calculate function invoked with: %v\n", req)
 
 	firstNum := req.GetNumbers().GetFirstNum()
